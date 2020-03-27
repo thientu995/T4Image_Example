@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<h1>Example: All file image stored in directory Images (/Images/fileImage.png)</h1>
+
+<h2>Step 2: Add code to the file Web.config</h2>
+<pre>
+@ViewBag.AddWebConfig
+</pre>
+
+<h2>Step 3: Create Controller with name Image (Or custom name)</h2>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace T4Image_ASPNETMVC_v1._1._0.Controllers
+{
+    public class ImageController : Controller
+    {
+        // GET: Image
+        public ActionResult Index()
+        {
+            return View();
+        }
+    }
+}
+</pre>
+
+<h2>Step 4: Set route Images/*</h2>
+File: <b>App_Start\RouteConfig.cs</b>
+<h3>- Add RouteExistingFiles</h3>
+<p>Add <b>routes.RouteExistingFiles = true</b></p>
+<pre>
+using System.Web.Mvc;
+using System.Web.Routing;
+namespace T4Image_ASPNETMVC_v1._1._0
+{
+    public class RouteConfig
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.RouteExistingFiles = true;
+
+            routes.MapRoute(
+                name: "Images",
+                url: "Images/{*url}",
+                defaults: new { controller = "Image", action = "Index" }
+            );
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+        }
+    }
+}
+</pre>
+
+<h3>- Attribute route controller</h3>
+<p>Add: <b>routes.MapMvcAttributeRoutes()</b></p>
+<pre>
+using System.Web.Mvc;
+using System.Web.Routing;
+namespace T4Image_ASPNETMVC_v1._1._0
+{
+    public class RouteConfig
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapMvcAttributeRoutes();
+            routes.RouteExistingFiles = true;
+            
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+        }
+    }
+}
+</pre>
+<p>Add: <b>[Route("Images/{*url}")]</b></p>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace T4Image_ASPNETMVC_v1._1._0.Controllers
+{
+    public class ImageController : Controller
+    {
+        // GET: Image
+        [Route("Images/{*url}")]
+        public ActionResult Index(string url)
+        {
+            return View();
+        }
+    }
+}
+</pre>
+
+<h2>Step 5: Code check controller</h2>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace T4Image_ASPNETMVC_v1._1._0.Controllers
+{
+    public class ImageController : Controller
+    {
+        // GET: Image
+        [Route("Images/{*url}")]
+        public ActionResult Index(string url)
+        {
+            return Content(url + " --- " + HttpContext.Request.Path);
+        }
+    }
+}
+</pre>
