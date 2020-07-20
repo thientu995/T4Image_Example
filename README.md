@@ -1,4 +1,7 @@
-T4 Image is library compress images on the .net platform.
+T4 Image: Compress, Resize, Create QR Code, Barcode,...
+
+T4 Image is library compress images on the .net platform. Has been added 2 function NEW: BarCode and QRCode
+
 T4 Image use core SkiaSharp.
 - Upgrade image compression algorithm compared to older versions. For more optimal compression results.
 - Support image compression with the quality selected in the range (from-to), instead of fixing a value like the old version.
@@ -6,6 +9,12 @@ T4 Image use core SkiaSharp.
    + Quality: High file size, quality and speed
    + Balance: Normal file size, quality and speed
    + Storage: Low file size, quality and speed
+
+### T4Image.QRCode: T4Image.QRCode qrcode = new T4Image.QRCode(TextInput, EECLevel);
+T4Image.IInput readImg = qrcode.Export();
+
+### T4Image.BarCode: T4Image.QRCode barcode = new T4Image.QRCode(TextInput, Show/HideLabel);
+T4Image.IInput readImg = barcode.Export();
 
 ### T4Image.IInput: T4Image.IInput readImg = new T4Image.Input(fileImage)
 - Input image with: Url, Uri, File, String Base64, Bytes.
@@ -15,6 +24,7 @@ T4 Image use core SkiaSharp.
    + File: readImg.File()
    + String Base64: readImg.Base64()
    + Bytes: readImg.Bytes(byte[] bytesInput)
+   + FromImage: readImg.FromImage(Image img)
    + ImageFile: Type Image after read
    + StreamFile: Type Stream after read
    + FileName: File name after read
