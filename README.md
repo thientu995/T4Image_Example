@@ -1,3 +1,5 @@
+[![Video demo](https://img.youtube.com/vi/QHQsBKkcvoE/0.jpg)](https://www.youtube.com/watch?v=QHQsBKkcvoE "Video demo")
+
 T4 Image: Compress, Resize, Create QR Code, Barcode,...
 
 T4 Image is library compress images on the .net platform. Has been added 2 function NEW: BarCode and QRCode
