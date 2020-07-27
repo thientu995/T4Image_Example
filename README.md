@@ -15,7 +15,7 @@ T4 Image use core SkiaSharp.
 ### T4Image.QRCode: T4Image.QRCode qrcode = new T4Image.QRCode(TextInput, EECLevel);
 T4Image.IInput readImg = qrcode.Export();
 
-### T4Image.BarCode: T4Image.QRCode barcode = new T4Image.QRCode(TextInput, Show/HideLabel);
+### T4Image.BarCode: T4Image.BarCode barcode = new T4Image.BarCode(BarcodeStandard.TYPE, TextInput, Show/HideLabel);
 T4Image.IInput readImg = barcode.Export();
 
 ### T4Image.IInput: T4Image.IInput readImg = new T4Image.Input(fileImage)
